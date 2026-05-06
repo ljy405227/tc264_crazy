@@ -1,11 +1,14 @@
-#   include "zf_common_headfile.h"
+#include "zf_common_headfile.h"
 #include "cpu0_main.h"
 #pragma section all "cpu0_dsram"
 
 volatile uint16_t pit_count_ms = 500;
 volatile uint8_t gogogo_flag = 0; // 启用控制中断
+uint8_t linshi_flag = 0;
 uint8_t ips_show_time = 0;
 volatile uint8_t first_flag = 1;
+volatile uint16_t time_debug = 0;
+uint8_t ljy_camera_deal_flag = 0;
 
 void printf_deal(void)
 {
@@ -35,11 +38,9 @@ void printf_deal(void)
             ,transistor_left_and_right_Num
         );
 }
-volatile uint16_t time_debug = 0;
 
-uint8_t linshi_flag = 0;
 
-// 带延时，循环中断里面慎用
+// 负压启动，带延时，循环中断里面慎用
 void pwm_ramp_up(uint32_t pwm, uint16_t target)
 {
     uint16_t duty = 1000;

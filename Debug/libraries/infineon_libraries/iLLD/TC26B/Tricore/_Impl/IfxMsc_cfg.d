@@ -2,23 +2,23 @@ IfxMsc_cfg.o :	../libraries/infineon_libraries/iLLD/TC26B/Tricore/_Impl/IfxMsc_c
 ../libraries/infineon_libraries/iLLD/TC26B/Tricore/_Impl/IfxMsc_cfg.c :
 IfxMsc_cfg.o :	..\libraries\infineon_libraries\iLLD\TC26B\Tricore\_Impl\IfxMsc_cfg.h
 ..\libraries\infineon_libraries\iLLD\TC26B\Tricore\_Impl\IfxMsc_cfg.h :
-IfxMsc_cfg.o :	"D:\\desktop\\smart_car\\ADS_Work_place\\TC264_common_new_4_25\\libraries\\infineon_libraries\\iLLD\\TC26B\\Tricore\Cpu\Std\Ifx_Types.h"
-"D:\\desktop\\smart_car\\ADS_Work_place\\TC264_common_new_4_25\\libraries\\infineon_libraries\\iLLD\\TC26B\\Tricore\Cpu\Std\Ifx_Types.h" :
-IfxMsc_cfg.o :	"D:\\desktop\\smart_car\\ADS_Work_place\\TC264_common_new_4_25\\libraries\\infineon_libraries\\Infra\\Platform\Tricore\Compilers\Compilers.h"
-"D:\\desktop\\smart_car\\ADS_Work_place\\TC264_common_new_4_25\\libraries\\infineon_libraries\\Infra\\Platform\Tricore\Compilers\Compilers.h" :
-IfxMsc_cfg.o :	"D:\\desktop\\smart_car\\ADS_Work_place\\TC264_common_new_4_25\\libraries\\infineon_libraries\\Configurations\Ifx_Cfg.h"
-"D:\\desktop\\smart_car\\ADS_Work_place\\TC264_common_new_4_25\\libraries\\infineon_libraries\\Configurations\Ifx_Cfg.h" :
-IfxMsc_cfg.o :	"D:\\desktop\\smart_car\\ADS_Work_place\\TC264_common_new_4_25\\libraries\\infineon_libraries\\Infra\\Platform\Tricore\Compilers\CompilerTasking.h"
-"D:\\desktop\\smart_car\\ADS_Work_place\\TC264_common_new_4_25\\libraries\\infineon_libraries\\Infra\\Platform\Tricore\Compilers\CompilerTasking.h" :
+IfxMsc_cfg.o :	"D:\\desktop\\smart_car\\ADS_Work_place\\tc264_crazy\\libraries\\infineon_libraries\\iLLD\\TC26B\\Tricore\Cpu\Std\Ifx_Types.h"
+"D:\\desktop\\smart_car\\ADS_Work_place\\tc264_crazy\\libraries\\infineon_libraries\\iLLD\\TC26B\\Tricore\Cpu\Std\Ifx_Types.h" :
+IfxMsc_cfg.o :	"D:\\desktop\\smart_car\\ADS_Work_place\\tc264_crazy\\libraries\\infineon_libraries\\Infra\\Platform\Tricore\Compilers\Compilers.h"
+"D:\\desktop\\smart_car\\ADS_Work_place\\tc264_crazy\\libraries\\infineon_libraries\\Infra\\Platform\Tricore\Compilers\Compilers.h" :
+IfxMsc_cfg.o :	"D:\\desktop\\smart_car\\ADS_Work_place\\tc264_crazy\\libraries\\infineon_libraries\\Configurations\Ifx_Cfg.h"
+"D:\\desktop\\smart_car\\ADS_Work_place\\tc264_crazy\\libraries\\infineon_libraries\\Configurations\Ifx_Cfg.h" :
+IfxMsc_cfg.o :	"D:\\desktop\\smart_car\\ADS_Work_place\\tc264_crazy\\libraries\\infineon_libraries\\Infra\\Platform\Tricore\Compilers\CompilerTasking.h"
+"D:\\desktop\\smart_car\\ADS_Work_place\\tc264_crazy\\libraries\\infineon_libraries\\Infra\\Platform\Tricore\Compilers\CompilerTasking.h" :
 IfxMsc_cfg.o :	"D:\software\AURIX\AURIX-Studio-1.10.6\tools\Compilers\Tasking_1.1r8\ctc\include\stddef.h"
 "D:\software\AURIX\AURIX-Studio-1.10.6\tools\Compilers\Tasking_1.1r8\ctc\include\stddef.h" :
-IfxMsc_cfg.o :	"D:\\desktop\\smart_car\\ADS_Work_place\\TC264_common_new_4_25\\libraries\\infineon_libraries\\iLLD\\TC26B\\Tricore\Cpu\Std\Platform_Types.h"
-"D:\\desktop\\smart_car\\ADS_Work_place\\TC264_common_new_4_25\\libraries\\infineon_libraries\\iLLD\\TC26B\\Tricore\Cpu\Std\Platform_Types.h" :
-IfxMsc_cfg.o :	"D:\\desktop\\smart_car\\ADS_Work_place\\TC264_common_new_4_25\\libraries\\infineon_libraries\\iLLD\\TC26B\\Tricore\Cpu\Std\Ifx_TypesTasking.h"
-"D:\\desktop\\smart_car\\ADS_Work_place\\TC264_common_new_4_25\\libraries\\infineon_libraries\\iLLD\\TC26B\\Tricore\Cpu\Std\Ifx_TypesTasking.h" :
-IfxMsc_cfg.o :	"D:\\desktop\\smart_car\\ADS_Work_place\\TC264_common_new_4_25\\libraries\\infineon_libraries\\Infra\\Sfr\\TC26B\\_Reg\IfxMsc_reg.h"
-"D:\\desktop\\smart_car\\ADS_Work_place\\TC264_common_new_4_25\\libraries\\infineon_libraries\\Infra\\Sfr\\TC26B\\_Reg\IfxMsc_reg.h" :
-IfxMsc_cfg.o :	"D:\\desktop\\smart_car\\ADS_Work_place\\TC264_common_new_4_25\\libraries\\infineon_libraries\\Infra\\Sfr\\TC26B\\_Reg\IfxMsc_regdef.h"
-"D:\\desktop\\smart_car\\ADS_Work_place\\TC264_common_new_4_25\\libraries\\infineon_libraries\\Infra\\Sfr\\TC26B\\_Reg\IfxMsc_regdef.h" :
-IfxMsc_cfg.o :	"D:\\desktop\\smart_car\\ADS_Work_place\\TC264_common_new_4_25\\libraries\\infineon_libraries\\Infra\\Sfr\\TC26B\\_Reg\Ifx_TypesReg.h"
-"D:\\desktop\\smart_car\\ADS_Work_place\\TC264_common_new_4_25\\libraries\\infineon_libraries\\Infra\\Sfr\\TC26B\\_Reg\Ifx_TypesReg.h" :
+IfxMsc_cfg.o :	"D:\\desktop\\smart_car\\ADS_Work_place\\tc264_crazy\\libraries\\infineon_libraries\\iLLD\\TC26B\\Tricore\Cpu\Std\Platform_Types.h"
+"D:\\desktop\\smart_car\\ADS_Work_place\\tc264_crazy\\libraries\\infineon_libraries\\iLLD\\TC26B\\Tricore\Cpu\Std\Platform_Types.h" :
+IfxMsc_cfg.o :	"D:\\desktop\\smart_car\\ADS_Work_place\\tc264_crazy\\libraries\\infineon_libraries\\iLLD\\TC26B\\Tricore\Cpu\Std\Ifx_TypesTasking.h"
+"D:\\desktop\\smart_car\\ADS_Work_place\\tc264_crazy\\libraries\\infineon_libraries\\iLLD\\TC26B\\Tricore\Cpu\Std\Ifx_TypesTasking.h" :
+IfxMsc_cfg.o :	"D:\\desktop\\smart_car\\ADS_Work_place\\tc264_crazy\\libraries\\infineon_libraries\\Infra\\Sfr\\TC26B\\_Reg\IfxMsc_reg.h"
+"D:\\desktop\\smart_car\\ADS_Work_place\\tc264_crazy\\libraries\\infineon_libraries\\Infra\\Sfr\\TC26B\\_Reg\IfxMsc_reg.h" :
+IfxMsc_cfg.o :	"D:\\desktop\\smart_car\\ADS_Work_place\\tc264_crazy\\libraries\\infineon_libraries\\Infra\\Sfr\\TC26B\\_Reg\IfxMsc_regdef.h"
+"D:\\desktop\\smart_car\\ADS_Work_place\\tc264_crazy\\libraries\\infineon_libraries\\Infra\\Sfr\\TC26B\\_Reg\IfxMsc_regdef.h" :
+IfxMsc_cfg.o :	"D:\\desktop\\smart_car\\ADS_Work_place\\tc264_crazy\\libraries\\infineon_libraries\\Infra\\Sfr\\TC26B\\_Reg\Ifx_TypesReg.h"
+"D:\\desktop\\smart_car\\ADS_Work_place\\tc264_crazy\\libraries\\infineon_libraries\\Infra\\Sfr\\TC26B\\_Reg\Ifx_TypesReg.h" :

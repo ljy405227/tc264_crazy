@@ -99,10 +99,6 @@ void menu_control(void)
             menu_state = main_menu;
             break;
     }
-    if (BM1 == down)
-    {
-        ips200_clear();
-    }
 }
 
 void main_menu_handle(void)
@@ -111,23 +107,7 @@ void main_menu_handle(void)
     {
         ips200_show_string( 30 , 20*i, main_menu_items[i].name);
     }
-    
-    // ips200_show_string( 0 , 20*main_choose_item,"-->");
     menu_choose(&main_choose_item, MENU_ITEM_COUNT);
-    // if (key_flag[1] == key_short_down)
-    // {
-    //     uint8_t last_main_choose_item = main_choose_item;
-    //     ips200_show_string( 0 , 20*last_main_choose_item,"   ");
-    //     main_choose_item = (main_choose_item + 1) % MENU_ITEM_COUNT;
-    //     key_res();
-    // }
-    // else if (key_flag[0] == key_short_down)
-    //  {
-    //     uint8_t last_main_choose_item = main_choose_item;
-    //     ips200_show_string( 0 , 20*last_main_choose_item,"   ");
-    //     main_choose_item = (main_choose_item + MENU_ITEM_COUNT - 1) % MENU_ITEM_COUNT;
-    //     key_res();
-    // }
     if (key_flag[2] == key_short_down)
     {
         ljy_ips200_clear();

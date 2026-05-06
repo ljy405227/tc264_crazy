@@ -26,15 +26,15 @@ OBJS += \
 
 # Each subdirectory must supply rules for building sources it contributes
 "libraries/zf_common/zf_components/printf_redirect.src":"../libraries/zf_common/zf_components/printf_redirect.c" "libraries/zf_common/zf_components/subdir.mk"
-	cctc -cs --dep-file="$*.d" --misrac-version=2004 -D__CPU__=tc26xb "-fD:/desktop/smart_car/ADS_Work_place/TC264_common_new_4_25/Debug/TASKING_C_C___Compiler-Include_paths__-I_.opt" --iso=99 --c++14 --language=+volatile --exceptions --anachronisms --fp-model=3 -O0 --tradeoff=4 --compact-max-size=200 -g -Wc-w544 -Wc-w557 -Ctc26xb -Y0 -N0 -Z0 -o "$@" "$<"
+	cctc -cs --dep-file="$*.d" --misrac-version=2004 -D__CPU__=tc26xb "-fD:/desktop/smart_car/ADS_Work_place/tc264_crazy/Debug/TASKING_C_C___Compiler-Include_paths__-I_.opt" --iso=99 --c++14 --language=+volatile --exceptions --anachronisms --fp-model=3 -O0 --tradeoff=4 --compact-max-size=200 -g -Wc-w544 -Wc-w557 -Ctc26xb -Y0 -N0 -Z0 -o "$@" "$<"
 "libraries/zf_common/zf_components/printf_redirect.o":"libraries/zf_common/zf_components/printf_redirect.src" "libraries/zf_common/zf_components/subdir.mk"
 	astc -Og -Os --no-warnings= --error-limit=42 -o  "$@" "$<"
 "libraries/zf_common/zf_components/seekfree_assistant.src":"../libraries/zf_common/zf_components/seekfree_assistant.c" "libraries/zf_common/zf_components/subdir.mk"
-	cctc -cs --dep-file="$*.d" --misrac-version=2004 -D__CPU__=tc26xb "-fD:/desktop/smart_car/ADS_Work_place/TC264_common_new_4_25/Debug/TASKING_C_C___Compiler-Include_paths__-I_.opt" --iso=99 --c++14 --language=+volatile --exceptions --anachronisms --fp-model=3 -O0 --tradeoff=4 --compact-max-size=200 -g -Wc-w544 -Wc-w557 -Ctc26xb -Y0 -N0 -Z0 -o "$@" "$<"
+	cctc -cs --dep-file="$*.d" --misrac-version=2004 -D__CPU__=tc26xb "-fD:/desktop/smart_car/ADS_Work_place/tc264_crazy/Debug/TASKING_C_C___Compiler-Include_paths__-I_.opt" --iso=99 --c++14 --language=+volatile --exceptions --anachronisms --fp-model=3 -O0 --tradeoff=4 --compact-max-size=200 -g -Wc-w544 -Wc-w557 -Ctc26xb -Y0 -N0 -Z0 -o "$@" "$<"
 "libraries/zf_common/zf_components/seekfree_assistant.o":"libraries/zf_common/zf_components/seekfree_assistant.src" "libraries/zf_common/zf_components/subdir.mk"
 	astc -Og -Os --no-warnings= --error-limit=42 -o  "$@" "$<"
 "libraries/zf_common/zf_components/seekfree_assistant_interface.src":"../libraries/zf_common/zf_components/seekfree_assistant_interface.c" "libraries/zf_common/zf_components/subdir.mk"
-	cctc -cs --dep-file="$*.d" --misrac-version=2004 -D__CPU__=tc26xb "-fD:/desktop/smart_car/ADS_Work_place/TC264_common_new_4_25/Debug/TASKING_C_C___Compiler-Include_paths__-I_.opt" --iso=99 --c++14 --language=+volatile --exceptions --anachronisms --fp-model=3 -O0 --tradeoff=4 --compact-max-size=200 -g -Wc-w544 -Wc-w557 -Ctc26xb -Y0 -N0 -Z0 -o "$@" "$<"
+	cctc -cs --dep-file="$*.d" --misrac-version=2004 -D__CPU__=tc26xb "-fD:/desktop/smart_car/ADS_Work_place/tc264_crazy/Debug/TASKING_C_C___Compiler-Include_paths__-I_.opt" --iso=99 --c++14 --language=+volatile --exceptions --anachronisms --fp-model=3 -O0 --tradeoff=4 --compact-max-size=200 -g -Wc-w544 -Wc-w557 -Ctc26xb -Y0 -N0 -Z0 -o "$@" "$<"
 "libraries/zf_common/zf_components/seekfree_assistant_interface.o":"libraries/zf_common/zf_components/seekfree_assistant_interface.src" "libraries/zf_common/zf_components/subdir.mk"
 	astc -Og -Os --no-warnings= --error-limit=42 -o  "$@" "$<"
 
