@@ -1,0 +1,31 @@
+可以跑赛道
+
+！！！！！！！！！！！！！！！但是一定要改flash的pid参数！！！！！！！！！！！！！！！！！！！！
+
+    Flash.tar_speed = 150.0f;
+    Flash.speed_kp = 296.0f;
+    Flash.speed_ki = 12.26f;
+    Flash.speed_kd = 1.0f;
+    // 3.28
+    Flash.gyro_kp = 24.70f;
+    Flash.gyro_kd = 1.0f;
+    Flash.dir_kp = 23.20f;
+    Flash.dir_kd = 0.86f;
+
+    Flash.gyro_kp_left = 6.58f;
+    Flash.gyro_kd_left = 2.0f;
+    Flash.dir_kp_left = 19.20f;
+    Flash.dir_kd_left = 2.06f;
+
+    Flash.gyro_kp_right = 4.20f;
+    Flash.gyro_kd_right = 0.2f;
+    Flash.dir_kp_right = 17.80f;
+    Flash.dir_kd_right = 2.06f;
+
+    Flash.other_ramp_time = 0.1f;
+    Flash.other_turn_speed = 120.0f;
+
+    Flash.speed_kp_right = 17.80f;
+    Flash.speed_ki_right = 2.06f;
+
+！！！！！！！！！！！！！！！但是一定要改flash的pid参数！！！！！！！！！！！！！！！！！！！！
