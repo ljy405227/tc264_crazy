@@ -150,7 +150,7 @@ int core0_main(void)
         if (pit_control_flag == 1)
         {
 //            printf_deal();
-            // printf_limit();
+            printf_limit();
             time_debug++;
 #if !run
              if (time_debug <= 70000)
@@ -185,7 +185,7 @@ int core0_main(void)
             //      pwm_set_duty(fuya_wushua_pwm, 0);
 
             //  }
-            if (time_debug <= 3600 && protect_flag == 0 && turn_count < 30)
+            if (time_debug <= 3600 && protect_flag == 0 && turn_count < 8)
             {
                 if (first_flag == 1)
                 {
@@ -193,7 +193,7 @@ int core0_main(void)
                     first_flag = 0;
                 }
             }
-            else if (time_debug > 3600 || protect_flag == 1 || turn_count >= 30)
+            else if (time_debug > 3600 || protect_flag == 1 || turn_count >= 8)
             {
                 pit_control_flag = 0;
                 Ljy_set_motor_pwm(0,0);

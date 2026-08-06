@@ -124,7 +124,7 @@ void Pid_Init(void)
 
 
     speed_target = 0;
-    speed_target_max = 210;
+    speed_target_max = 180;
 
     speed_pid.Kp = 70;
     speed_pid.Ki = 0.56;
@@ -176,11 +176,11 @@ void Pid_Init(void)
 
 
     ramp.speed_target = 0.0f;
-    ramp.speed_target_max = 210;
+    ramp.speed_target_max = 180;
     ramp.ramp_time = 0.2;
     ramp.elapsed_time = 0.0f;
 
-    speed_turn = 215;
+    speed_turn = 185.0f;
 }
 
 // 速度环增量式PID公式
@@ -330,32 +330,7 @@ void ljy_isr_headle(void)
         yaw_turn_first = yaw;
         zuo_ing = 1;
         turn_count++;
-        // if (turn_count == 4)
-        // {
-        //     speed_target_max = 200;
-        //     ramp.speed_target_max = 200;
-        //     speed_turn = 205;
-        // }
-        // else if (turn_count == 11)
-        // {
-        //     speed_target_max = 210;
-        //     ramp.speed_target_max = 210;
-        //     speed_turn = 215;
-        // }
-        
-        // else if (turn_count == 11 || turn_count == 21)
-        // {
-        //     speed_target_max = 190;
-        //     ramp.speed_target_max = 190;
-        //     speed_turn = 195;
-        // }
-        // else if (turn_count == 15)
-        // {
-        //     speed_target_max = 175;
-        //     ramp.speed_target_max = 175;
-        //     speed_turn = 180;
-        // }
-        
+
         pid_dir_gyro.err = 0;
         pid_dir_gyro.err_last = 0;
         pid_dir_gyro.out = 0;
@@ -412,48 +387,10 @@ void ljy_isr_headle(void)
     {
     case TASK_STRAIGHT:
     {
-        if (turn_count == 1 || turn_count == 3 || (turn_count >= 10 && turn_count <= 21))
-        {
-            Img_Gap_left = 12;
-            Img_Gap_right = 12;
-        }
-        else if ((turn_count >= 22 && turn_count != 25 && turn_count != 26) || turn_count == 2)
-        {
-            Img_Gap_left = 8;
-            Img_Gap_right = 8;
-        }
-        else if (turn_count == 25 || turn_count == 26)
-        {
-         Img_Gap_left = 16;
-         Img_Gap_right = 16;
-        }
-        else if (turn_count == 4)
-        {
-            Img_Gap_left = 22;
-            Img_Gap_right = 22;
-        }
-        else
-        {
-            Img_Gap_left = 13;
-            Img_Gap_right = 13;
-        }
-        if (turn_count == 11)
-        {
-            Img_Gap_left = 10;
-            Img_Gap_right = 10;
-        }
-        if (turn_count == 13 || turn_count == 14)
-        {
-            Img_Gap_left = 14;
-            Img_Gap_right = 14;
-        }
-        
-
         ramp.speed_target_max = speed_target_max;
         speed_target = (int)SpeedRamp_Update(&ramp);
         PID_Direction_Control(&pid_dir_pos, &pid_dir_gyro, Final_Sum);
         Speed_Control_begin(speed_target + speed_dis_out, speed_target - speed_dis_out);
-        // Ljy_set_motor_pwm((int)speed_pid.out, (int)speed_pid.out);
 #if run
        Ljy_set_motor_pwm((int)speed_pid.out - (int) speed_dis_out, (int)speed_pid.out + (int)speed_dis_out);
 #endif
@@ -466,7 +403,6 @@ void ljy_isr_headle(void)
         speed_target = (int)SpeedRamp_Update(&ramp);
         PID_Direction_Control(&pid_dir_pos_right, &pid_dir_gyro_right, Final_Sum);
         Speed_Control_begin(speed_target * 1 + speed_dis_out, speed_target * 1 - speed_dis_out);
-        // Ljy_set_motor_pwm((int)speed_pid.out, (int)speed_pid.out);
 #if run
        Ljy_set_motor_pwm((int)speed_pid.out - (int) speed_dis_out, (int)speed_pid.out + (int)(speed_dis_out));
 #endif
@@ -480,7 +416,6 @@ void ljy_isr_headle(void)
         speed_target = (int)SpeedRamp_Update(&ramp);
         PID_Direction_Control(&pid_dir_pos_left, &pid_dir_gyro_left, Final_Sum);
         Speed_Control_begin(speed_target * 1 + speed_dis_out, speed_target * 1 - speed_dis_out);
-        // Ljy_set_motor_pwm((int)speed_pid.out, (int)speed_pid.out);
 #if run
        Ljy_set_motor_pwm((int)speed_pid.out - (int)(speed_dis_out), (int)speed_pid.out + (int)speed_dis_out);
 #endif
@@ -489,9 +424,6 @@ void ljy_isr_headle(void)
     default:
         break;
     }
-
-
-
     if((int)speed_pid.out - (int)(speed_dis_out) > 9900 || (int)speed_pid.out + (int)(speed_dis_out)> 9900)
     {
         limit_check.final_pwm += 1;
@@ -527,12 +459,10 @@ void Speed_Control_begin(float Left_Target_Speed, float Right_Target_Speed)
 #if !mode_fuya
     encoder_left.encoder_count_original = -(int16)IfxGpt12_T3_getTimerValue(&MODULE_GPT120);
     IfxGpt12_T3_setTimerValue(&MODULE_GPT120, 0);
-//    encoder_left.encoder_count_original =  abs_val(encoder_left.encoder_count_original);
     LPF_1_int(20, 1.0e-3, encoder_left.encoder_count_original, &encoder_left.encoder_count, &lpf_encoder_left);
 
     encoder_right.encoder_count_original = (int16)IfxGpt12_T2_getTimerValue(&MODULE_GPT120);
     IfxGpt12_T2_setTimerValue(&MODULE_GPT120, 0);
-//    encoder_right.encoder_count_original =  abs_val(encoder_right.encoder_count_original);
     LPF_1_int(20, 1.0e-3, encoder_right.encoder_count_original, &encoder_right.encoder_count, &lpf_encoder_right);
 
     // encoder_all_left += encoder_left.encoder_count;

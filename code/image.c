@@ -1077,8 +1077,8 @@ uint8_t transistor_frames_judge;
 uint8_t Series_of_Curves_Sign = 0;
 uint8_t End_Judge_frames = 2;
 //uint8_t Road_Planning[50] = {2,1,0,1,1,2,1,1,1,0,2,0,0,0,2,2,2,0,0,0};   //预赛路径
-uint8_t Road_Planning[50] = {2,1,0,1,1,2,1,1,1,1,0,2,0,0,1,1,3,4,1,1,1,3,2,0,0,0,0,2,2,2,2,0,0,0, 0, 0, 2};   //决赛路径
-//uint8_t Road_Planning[50] = {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2};
+// uint8_t Road_Planning[50] = {2,1,0,1,1,2,1,1,1,1,0,2,0,0,1,1,3,4,1,1,1,3,2,0,0,0,0,2,2,2,2,0,0,0, 0, 0, 2};   //决赛路径
+uint8_t Road_Planning[50] = {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2};
 //uint8_t Road_Planning[50] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 /********************************/
 /******************************************************************************
@@ -1180,17 +1180,17 @@ void Error_Gap(void)
                 center_point_x_average = 47;
             }
            Final_Sum = center_point_x_average - Middle_Line_x;
-           if(transistor_Num == 2 || transistor_Num == 13 || transistor_Num == 24)
-           {
-               if(Final_Sum < -10)
-               {
-                   Final_Sum = -10;
-               }
-               if(Final_Sum > 10)
-               {
-                   Final_Sum = 10;
-               }
-           }
+        //    if(transistor_Num == 2 || transistor_Num == 13 || transistor_Num == 24)
+        //    {
+        //        if(Final_Sum < -10)
+        //        {
+        //            Final_Sum = -10;
+        //        }
+        //        if(Final_Sum > 10)
+        //        {
+        //            Final_Sum = 10;
+        //        }
+        //    }
            break;
         }
         case(2): //根据四方位判断此时为右拐弯处理
