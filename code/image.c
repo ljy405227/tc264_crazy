@@ -41,8 +41,8 @@ uint8_t Direction_Planning = 0;
 #define Boundary_point_gap 50
 
 //转弯参数
-uint8_t Img_Gap_left = 12;
-uint8_t Img_Gap_right = 12;
+uint8_t Img_Gap_left = 20;
+uint8_t Img_Gap_right = 20;
 #define frame_judge 1
 
 
@@ -773,7 +773,7 @@ uint8_t Right_frames_judge_l = frame_judge;
 void trace_Right_angle(void)
 {
 
-      if(((up_edge_point.x >= 75 && total_touch_flags.touch_top == 1) || total_touch_flags.touch_top == 0) && total_touch_flags.touch_left == 0 && total_touch_flags.touch_right == 1 && total_touch_flags.touch_bottom == 1 && right_edge_point.y >= Img_Gap_right && state_flag == 1 && end_turning_state == 1 && boundary_gap < 12 )
+      if(((up_edge_point.x >= 65 && total_touch_flags.touch_top == 1) || total_touch_flags.touch_top == 0) && total_touch_flags.touch_left == 0 && total_touch_flags.touch_right == 1 && total_touch_flags.touch_bottom == 1 && right_edge_point.y >= Img_Gap_right && state_flag == 1 && end_turning_state == 1 && boundary_gap < 12 )
       {
         Right_frames_judge_r --;
         if(Right_frames_judge_r == 0 && ban_transisitor == 0 && transistor_Num != 6)
@@ -1018,7 +1018,7 @@ void trace_transistor(void)
     if(total_touch_flags.touch_top == 1 && total_touch_flags.touch_left == 1 && total_touch_flags.touch_right == 0 && total_touch_flags.touch_bottom == 1 && left_edge_point.y >= Img_Gap_left && state_flag == 1 && end_turning_state == 1 && boundary_gap >= 12) //左转的T字口
     {
         transistor_Judge_frames_l --;
-        if(transistor_Judge_frames_l == 0 && ban_transisitor == 0 && transistor_Num != 17 && transistor_Num != 22)
+        if(transistor_Judge_frames_l == 0 && ban_transisitor == 0 && transistor_Num != 2 && transistor_Num != 17 && transistor_Num != 22)
         {
             transistor_Judge_frames_l = frame_judge;
             transistor_Num++;          // 经过的三极管数量
@@ -1077,8 +1077,10 @@ uint8_t transistor_frames_judge;
 uint8_t Series_of_Curves_Sign = 0;
 uint8_t End_Judge_frames = 2;
 //uint8_t Road_Planning[50] = {2,1,0,1,1,2,1,1,1,0,2,0,0,0,2,2,2,0,0,0};   //预赛路径
-// uint8_t Road_Planning[50] = {2,1,0,1,1,2,1,1,1,1,0,2,0,0,1,1,3,4,1,1,1,3,2,0,0,0,0,2,2,2,2,0,0,0, 0, 0, 2};   //决赛路径
-uint8_t Road_Planning[50] = {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2};
+uint8_t Road_Planning[50] = {2,1,0,1,1,2,1,1,1,1,0,2,0,0,1,1,3,4,1,1,1,3,2,0,0,0,0,2,2,2,2,0,0,0, 0, 0, 2};   //决赛路径
+// uint8_t Road_Planning[50] = {0,0,1,1,3,4,1,1,1,3,2,0,0,0,0,2,2,2,2,0,0,0, 0, 0, 2};
+// uint8_t Road_Planning[50] = {1,3,4,1,1,1,3,2,0,0,0,0,2,2,2,2,0,0,0, 0, 0, 2};
+// uint8_t Road_Planning[50] = {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2};
 //uint8_t Road_Planning[50] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 /********************************/
 /******************************************************************************
@@ -1123,7 +1125,7 @@ void Final_Road(void)
         }
         else
         {
-            End_Judge_frames = 3;
+            End_Judge_frames = 2;
         }
 
     }
@@ -1180,17 +1182,17 @@ void Error_Gap(void)
                 center_point_x_average = 47;
             }
            Final_Sum = center_point_x_average - Middle_Line_x;
-        //    if(transistor_Num == 2 || transistor_Num == 13 || transistor_Num == 24)
-        //    {
-        //        if(Final_Sum < -10)
-        //        {
-        //            Final_Sum = -10;
-        //        }
-        //        if(Final_Sum > 10)
-        //        {
-        //            Final_Sum = 10;
-        //        }
-        //    }
+           if(transistor_Num == 2 || transistor_Num == 13 || transistor_Num == 24)
+           {
+               if(Final_Sum < -10)
+               {
+                   Final_Sum = -5;
+               }
+               if(Final_Sum > 10)
+               {
+                   Final_Sum = 5;
+               }
+           }
            break;
         }
         case(2): //根据四方位判断此时为右拐弯处理

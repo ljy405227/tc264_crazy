@@ -109,7 +109,7 @@ int core0_main(void)
 #endif
 #if !mode_fuya
     pwm_init(fuya_wushua_pwm, 50, 0);
-    pwm_ramp_up(fuya_wushua_pwm, 800);
+    pwm_ramp_up(fuya_wushua_pwm, 750);
 #endif
 #endif
 
@@ -119,7 +119,7 @@ int core0_main(void)
 #endif 
     pit_control_flag = 0;
     car_on_flag = 1;
-//     Ljy_set_motor_pwm(3000,3000);
+//    Ljy_set_motor_pwm(2000,3000);
     cpu_wait_event_ready();
 
     while (1)
@@ -144,7 +144,7 @@ int core0_main(void)
                  ljy_ips200_data_printf(4, "dir_lim:%5d, pwm_lim:%3d", limit_check.dir_out, limit_check.final_pwm);
                  ljy_ips200_data_printf(5, "beg:%d|end:%d|zuo:%d|you:%d", turning_state, end_turning_state, zuo_ing, you_ing);
                  ljy_ips200_data_printf(6, "turn_count:%d", turn_count);
-                 ljy_ips200_data_printf(7, "final_sum:%d", Final_Sum);
+                 ljy_ips200_data_printf(7, "final_sum:%d     ", Final_Sum);
              }
          }
         if (pit_control_flag == 1)
@@ -185,7 +185,7 @@ int core0_main(void)
             //      pwm_set_duty(fuya_wushua_pwm, 0);
 
             //  }
-            if (time_debug <= 3600 && protect_flag == 0 && turn_count < 8)
+            if (time_debug <= 3600 && protect_flag == 0 && turn_count < 30)
             {
                 if (first_flag == 1)
                 {
@@ -193,7 +193,7 @@ int core0_main(void)
                     first_flag = 0;
                 }
             }
-            else if (time_debug > 3600 || protect_flag == 1 || turn_count >= 8)
+            else if (time_debug > 3600 || protect_flag == 1 || turn_count >= 30)
             {
                 pit_control_flag = 0;
                 Ljy_set_motor_pwm(0,0);

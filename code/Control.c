@@ -124,7 +124,7 @@ void Pid_Init(void)
 
 
     speed_target = 0;
-    speed_target_max = 180;
+    speed_target_max = 150;
 
     speed_pid.Kp = 70;
     speed_pid.Ki = 0.56;
@@ -176,11 +176,11 @@ void Pid_Init(void)
 
 
     ramp.speed_target = 0.0f;
-    ramp.speed_target_max = 180;
+    ramp.speed_target_max = 150;
     ramp.ramp_time = 0.2;
     ramp.elapsed_time = 0.0f;
 
-    speed_turn = 185.0f;
+    speed_turn = 155.0f;
 }
 
 // 速度环增量式PID公式
@@ -251,8 +251,8 @@ void PID_Direction_Control(PID_DIR *pos_pid, PID_DIR *gyro_pid , float err_posit
     if(expect_gyro < -limit_gyro) {expect_gyro = -limit_gyro;limit_check.dir_expect_gyro += 1;}
     // if (turn_count >=11 || turn_count <= 3)
     // {
-        if (task_point == TASK_TURN_RIGHT) expect_gyro = 1300;
-        else if (task_point == TASK_TURN_LEFT) expect_gyro = -1300;
+        if (task_point == TASK_TURN_RIGHT) expect_gyro = 1050;
+        else if (task_point == TASK_TURN_LEFT) expect_gyro = -1050;
     // }
     // else
     // {
