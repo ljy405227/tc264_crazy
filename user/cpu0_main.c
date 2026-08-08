@@ -100,8 +100,8 @@ int core0_main(void)
     {
 //        system_delay_ms(10);
     }
-//     pwm_init(fuya_wushua_pwm, 50, 0);
-//     pwm_ramp_up(fuya_wushua_pwm, 800);
+    // pwm_init(fuya_wushua_pwm, 50, 0);
+    // pwm_ramp_up(fuya_wushua_pwm, 800);
 #if run
 #if mode_fuya
     pwm_init(fuya_left_pwm, 17000, 0);
@@ -109,7 +109,7 @@ int core0_main(void)
 #endif
 #if !mode_fuya
     pwm_init(fuya_wushua_pwm, 50, 0);
-    pwm_ramp_up(fuya_wushua_pwm, 750);
+    pwm_ramp_up(fuya_wushua_pwm, 700);
 #endif
 #endif
 
@@ -119,7 +119,7 @@ int core0_main(void)
 #endif 
     pit_control_flag = 0;
     car_on_flag = 1;
-//    Ljy_set_motor_pwm(2000,3000);
+//    Ljy_set_motor_pwm(3000,3000);
     cpu_wait_event_ready();
 
     while (1)

@@ -41,8 +41,8 @@ uint8_t Direction_Planning = 0;
 #define Boundary_point_gap 50
 
 //转弯参数
-uint8_t Img_Gap_left = 20;
-uint8_t Img_Gap_right = 20;
+uint8_t Img_Gap_left = 18;
+uint8_t Img_Gap_right = 18;
 #define frame_judge 1
 
 
@@ -1075,7 +1075,7 @@ void trace_transistor(void)
 //最终路径规划函数
 uint8_t transistor_frames_judge;
 uint8_t Series_of_Curves_Sign = 0;
-uint8_t End_Judge_frames = 2;
+uint8_t End_Judge_frames = 3;
 //uint8_t Road_Planning[50] = {2,1,0,1,1,2,1,1,1,0,2,0,0,0,2,2,2,0,0,0};   //预赛路径
 uint8_t Road_Planning[50] = {2,1,0,1,1,2,1,1,1,1,0,2,0,0,1,1,3,4,1,1,1,3,2,0,0,0,0,2,2,2,2,0,0,0, 0, 0, 2};   //决赛路径
 // uint8_t Road_Planning[50] = {0,0,1,1,3,4,1,1,1,3,2,0,0,0,0,2,2,2,2,0,0,0, 0, 0, 2};
@@ -1125,7 +1125,7 @@ void Final_Road(void)
         }
         else
         {
-            End_Judge_frames = 2;
+            End_Judge_frames = 3;
         }
 
     }
