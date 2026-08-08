@@ -109,7 +109,7 @@ int core0_main(void)
 #endif
 #if !mode_fuya
     pwm_init(fuya_wushua_pwm, 50, 0);
-    pwm_ramp_up(fuya_wushua_pwm, 700);
+    pwm_ramp_up(fuya_wushua_pwm, 750);
 #endif
 #endif
 
