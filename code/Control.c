@@ -249,16 +249,16 @@ void PID_Direction_Control(PID_DIR *pos_pid, PID_DIR *gyro_pid , float err_posit
     // 限幅
     if(expect_gyro > limit_gyro)  {expect_gyro = limit_gyro;limit_check.dir_expect_gyro += 1;}
     if(expect_gyro < -limit_gyro) {expect_gyro = -limit_gyro;limit_check.dir_expect_gyro += 1;}
-    // if (turn_count >=11 || turn_count <= 3)
-    // {
-        if (task_point == TASK_TURN_RIGHT) expect_gyro = 1350;
-        else if (task_point == TASK_TURN_LEFT) expect_gyro = -1350;
-    // }
-    // else
-    // {
-    //     if (task_point == TASK_TURN_RIGHT) expect_gyro = 1250;
-    //     else if (task_point == TASK_TURN_LEFT) expect_gyro = -1250;
-    // }
+     if (turn_count == 33 )
+     {
+        if (task_point == TASK_TURN_RIGHT) expect_gyro = 1250;
+        else if (task_point == TASK_TURN_LEFT) expect_gyro = -1250;
+     }
+     else
+     {
+         if (task_point == TASK_TURN_RIGHT) expect_gyro = 1350;
+         else if (task_point == TASK_TURN_LEFT) expect_gyro = -1350;
+     }
 
     /*==================== 2. 角速度环（PD） ====================*/
     // 保存上次误差
@@ -354,32 +354,65 @@ void ljy_isr_headle(void)
     if (zuo_ing == 1)
     {
         float diff = angle_diff(yaw, yaw_turn_first);
-        if (diff >= 62 || diff <= -62 )  // 左转达到 65 度
+        if (turn_count == 33)
         {
-            end_turning_state = 1;
-            zuo_ing = 0;
+            if (diff >= 82 || diff <= -82 )  // 左转达到 65 度
+            {
+                end_turning_state = 1;
+                zuo_ing = 0;
 
-            pid_dir_gyro.err = 0;
-            pid_dir_gyro.err_last = 0;
-            pid_dir_gyro.out = 0;
-            pid_dir_pos.err = 0;
-            pid_dir_pos.err_last = 0;
-            pid_dir_pos.out = 0;
+                pid_dir_gyro.err = 0;
+                pid_dir_gyro.err_last = 0;
+                pid_dir_gyro.out = 0;
+                pid_dir_pos.err = 0;
+                pid_dir_pos.err_last = 0;
+                pid_dir_pos.out = 0;
 
-            pid_dir_gyro_left.err = 0;
-            pid_dir_gyro_left.err_last = 0;
-            pid_dir_gyro_left.out = 0;
-            pid_dir_pos_left.err = 0;
-            pid_dir_pos_left.err_last = 0;
-            pid_dir_pos_left.out = 0;
+                pid_dir_gyro_left.err = 0;
+                pid_dir_gyro_left.err_last = 0;
+                pid_dir_gyro_left.out = 0;
+                pid_dir_pos_left.err = 0;
+                pid_dir_pos_left.err_last = 0;
+                pid_dir_pos_left.out = 0;
 
-            pid_dir_gyro_right.err = 0;
-            pid_dir_gyro_right.err_last = 0;
-            pid_dir_gyro_right.out = 0;
-            pid_dir_pos_right.err = 0;
-            pid_dir_pos_right.err_last = 0;
-            pid_dir_pos_right.out = 0;
+                pid_dir_gyro_right.err = 0;
+                pid_dir_gyro_right.err_last = 0;
+                pid_dir_gyro_right.out = 0;
+                pid_dir_pos_right.err = 0;
+                pid_dir_pos_right.err_last = 0;
+                pid_dir_pos_right.out = 0;
+            }
         }
+        else
+        {
+            if (diff >= 62 || diff <= -62 )  // 左转达到 65 度
+            {
+                end_turning_state = 1;
+                zuo_ing = 0;
+
+                pid_dir_gyro.err = 0;
+                pid_dir_gyro.err_last = 0;
+                pid_dir_gyro.out = 0;
+                pid_dir_pos.err = 0;
+                pid_dir_pos.err_last = 0;
+                pid_dir_pos.out = 0;
+
+                pid_dir_gyro_left.err = 0;
+                pid_dir_gyro_left.err_last = 0;
+                pid_dir_gyro_left.out = 0;
+                pid_dir_pos_left.err = 0;
+                pid_dir_pos_left.err_last = 0;
+                pid_dir_pos_left.out = 0;
+
+                pid_dir_gyro_right.err = 0;
+                pid_dir_gyro_right.err_last = 0;
+                pid_dir_gyro_right.out = 0;
+                pid_dir_pos_right.err = 0;
+                pid_dir_pos_right.err_last = 0;
+                pid_dir_pos_right.out = 0;
+            }
+        }
+
     }
 #endif
 
@@ -392,10 +425,20 @@ void ljy_isr_headle(void)
             Img_Gap_left = 28;
             Img_Gap_right = 28;
         }
+        else if (turn_count == 18)
+        {
+            Img_Gap_left = 21;
+            Img_Gap_right = 21;
+        }
+        else if (turn_count == 32 || turn_count == 33 || turn_count == 34)
+        {
+            Img_Gap_left = 19;
+            Img_Gap_right = 19;
+        }
         else
         {
-            Img_Gap_left = 25;
-            Img_Gap_right = 25;
+            Img_Gap_left = 24;
+            Img_Gap_right = 24;
         }
 
 

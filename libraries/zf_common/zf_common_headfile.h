@@ -221,9 +221,9 @@ extern int16_t Final_Sum;
 extern uint16_t left_boundary_len;
 extern uint16_t right_boundary_len;
 extern uint16_t left_boundary_x_sum;
-extern uint16_t left_boundary_average_x;
+extern int16_t left_boundary_average_x;
 extern uint16_t right_boundary_x_sum;
-extern uint16_t right_boundary_average_x;
+extern int16_t right_boundary_average_x;
 extern int16_t boundary_gap;
 
 extern BoundaryTouchFlags total_touch_flags; // 鎬昏竟鐣岃Е纰版爣蹇
