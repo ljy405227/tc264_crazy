@@ -150,7 +150,7 @@ int core0_main(void)
         if (pit_control_flag == 1)
         {
 //            printf_deal();
-            printf_limit();
+//            printf_limit();
             time_debug++;
 #if !run
              if (time_debug <= 70000)

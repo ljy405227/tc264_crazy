@@ -135,15 +135,15 @@ void Pid_Init(void)
     speed_pid.out_limit = 6500;
 
 
-    pid_dir_gyro.Kp =  3.5;
-    pid_dir_gyro.Kd =  0.2;
+    pid_dir_gyro.Kp =  2.5;
+    pid_dir_gyro.Kd =  0.15;
     pid_dir_gyro.Ki = 0;
     pid_dir_gyro.err = 0;
     pid_dir_gyro.err_last = 0;
     pid_dir_gyro.out = 0;
 
-    pid_dir_pos.Kp =  22.10;
-    pid_dir_pos.Kd =  0.86;
+    pid_dir_pos.Kp =  18.10;
+    pid_dir_pos.Kd =  0.66;
     pid_dir_pos.err = 0;
     pid_dir_pos.err_last = 0;
     pid_dir_pos.out = 0;
@@ -251,8 +251,8 @@ void PID_Direction_Control(PID_DIR *pos_pid, PID_DIR *gyro_pid , float err_posit
     if(expect_gyro < -limit_gyro) {expect_gyro = -limit_gyro;limit_check.dir_expect_gyro += 1;}
     // if (turn_count >=11 || turn_count <= 3)
     // {
-        if (task_point == TASK_TURN_RIGHT) expect_gyro = 1500;
-        else if (task_point == TASK_TURN_LEFT) expect_gyro = -1500;
+        if (task_point == TASK_TURN_RIGHT) expect_gyro = 1350;
+        else if (task_point == TASK_TURN_LEFT) expect_gyro = -1350;
     // }
     // else
     // {

@@ -23,7 +23,7 @@ void ips_show(void)
         ips200_show_int(200,80,right_edge_point.y,3);
         ips200_show_int(200,100,left_edge_point.y,3);
         ips200_show_uint(200,120,transistor_Num,3);
-        ips200_show_int(200,140,boundary_gap,3);
+        ips200_show_int(200,140,top_center_x_gap,3);
 
         ips200_show_uint(200,170,total_touch_flags.touch_top,3);
         ips200_show_uint(190,190,total_touch_flags.touch_left,3);
