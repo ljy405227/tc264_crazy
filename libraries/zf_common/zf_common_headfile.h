@@ -241,7 +241,7 @@ extern uint8_t Special_flag;
 extern uint8_t protect_flag;
 extern uint16_t white_num_sum;
 extern int8_t top_center_x_gap;
-
+extern uint8_t Right_ban_flag;
 //=====================================================锟矫伙拷锟斤拷======================================================
 
 void printf_deal(void);

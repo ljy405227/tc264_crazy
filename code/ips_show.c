@@ -20,7 +20,7 @@ void ips_show(void)
         ips200_show_int(200,50,center_point_x_average,3);
 //        ips200_show_uint(200,100,right_corner_point_y,3);
 //        ips200_show_uint(200,120,left_corner_point_y,3);
-        ips200_show_int(200,80,right_edge_point.y,3);
+        ips200_show_uint(200,80,Right_ban_flag,3);
         ips200_show_int(200,100,left_edge_point.y,3);
         ips200_show_uint(200,120,transistor_Num,3);
         ips200_show_int(200,140,top_center_x_gap,3);

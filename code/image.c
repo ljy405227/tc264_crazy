@@ -368,6 +368,14 @@ uint16_t deal_bottom=my_camera_h-1;
 uint16_t l_point_x = 0, r_point_x = 0;
 uint16_t bottom_center_x;
 uint16_t bottom_center_y;
+int16_t left_point[10];
+int16_t right_point[10];
+uint16_t left_point_num = 0;
+uint16_t right_point_num = 0;
+int16_t left_Point_Gap = 0;
+int16_t right_Point_Gap = 0;
+int16_t current_left_Point_Gap = 60;
+int16_t current_right_Point_Gap = 60;
 /********************************/
 /******************************************************************************
 * 函数名称     : find_track_start_point
@@ -377,22 +385,55 @@ uint16_t bottom_center_y;
 ******************************************************************************/
 uint8_t find_track_start_point(void)
 {
+    memset(left_point, 0, sizeof(left_point));
+    memset(right_point, 0, sizeof(right_point));
     bottom_center_x = 47;
     bottom_center_y = 59;
+    left_point_num = 0;
+    right_point_num = 0;
+    left_Point_Gap = 0;
+    right_Point_Gap = 0;
+    current_left_Point_Gap = 60;
+    current_right_Point_Gap = 60;
 
     for(uint16_t i = deal_bottom; i > deal_bottom - 15 ; i--)    // 从底部向上搜索合适的起始行（使用行白点数作为判断条件）
     {
         uint8_t l_found = 0, r_found = 0;
         start_center_y = i;
-        for(uint16_t j = 1; j < my_camera_w - 2; j++) // 从左向右寻找左边界（黑到白跳变）
+        if(transistor_Num == 40)  //特殊运放处巡线处理
         {
-            if(img_binary[i][j] == Black && img_binary[i][j+1] == White && img_binary[i][j+2] == White)
+            for(uint16_t j = 1; j < my_camera_w - 2; j++) // 从左向右寻找左边界（黑到白跳变）
             {
-                l_point_x = j + 1;
-                l_found = 1;
-                break;
+                if(img_binary[i][j] == Black && img_binary[i][j+1] == White && img_binary[i][j+2] == White)
+                {
+                    left_point[left_point_num] = j + 1;
+                    left_point_num ++;
+                    l_found = 1;
+                }
+            }
+            for(uint16_t m = 0; m < left_point_num; m++)
+            {
+                left_Point_Gap = my_abs(Middle_Line_x - left_point[m]);
+                if(left_Point_Gap < current_left_Point_Gap)
+                {
+                    current_left_Point_Gap = left_Point_Gap;
+                    l_point_x = left_point[m];
+                }
             }
         }
+        else
+        {
+            for(uint16_t j = 1; j < my_camera_w - 2; j++) // 从左向右寻找左边界（黑到白跳变）
+            {
+                if(img_binary[i][j] == Black && img_binary[i][j+1] == White && img_binary[i][j+2] == White)
+                {
+                    l_point_x = j + 1;
+                    l_found = 1;
+                    break;
+                }
+            }
+        }
+
         for(uint16_t j = my_camera_w - 2; j > 1; j--) // 从右向左寻找右边界（白到黑跳变）
         {
             if(img_binary[i][j-1] == White && img_binary[i][j] == White && img_binary[i][j+1] == Black)
@@ -637,6 +678,8 @@ void trace_boundary(uint16_t start_x_l, uint16_t start_y_l,uint16_t start_x_r,ui
                 if(ny_r == 3)
                 {
                     total_touch_flags.touch_top = 1;   //上
+                    up_edge_point.x = nx_r;
+                    up_edge_point.y = ny_r;
                 }
                 if(ny_r == my_camera_h - 2)
                 {
@@ -799,7 +842,7 @@ void trace_Right_angle(void)
       {
           Right_frames_judge_r = frame_judge;
       }
-      if(total_touch_flags.touch_top == 0 && total_touch_flags.touch_left == 1 && total_touch_flags.touch_right == 0 && total_touch_flags.touch_bottom == 1 && left_edge_point.y >= Img_Gap_left && state_flag == 1 && end_turning_state == 1 && boundary_gap < 12)
+      if((total_touch_flags.touch_top == 0 || (total_touch_flags.touch_top == 1 && up_edge_point.x <= 47 && transistor_Num == 40)) && total_touch_flags.touch_left == 1 && (total_touch_flags.touch_right == 0 || (total_touch_flags.touch_right == 1 && right_edge_point.y >= 20 && transistor_Num == 40)) && total_touch_flags.touch_bottom == 1 && left_edge_point.y >= Img_Gap_left && state_flag == 1 && end_turning_state == 1 && boundary_gap < 12)
       {
         Right_frames_judge_l --;
         if(Right_frames_judge_l == 0 && ban_transisitor == 0)
@@ -808,6 +851,15 @@ void trace_Right_angle(void)
           state_flag = 3;
           end_turning_state = 0;
           Right_frames_judge_l = frame_judge;
+        }
+        if(transistor_Num == 40 && ((total_touch_flags.touch_right == 1 && right_edge_point.y >= 20) || total_touch_flags.touch_right == 0) && Right_flag == 1)
+        {
+            Right_ban_flag = 0;
+        }
+        if(transistor_Num == 40 && total_touch_flags.touch_top == 1 && up_edge_point.x <= 47 && Right_ban_flag == 0)
+        {
+            Right_ban_flag = 1;
+            Right_flag = 1;
         }
       }
       else
@@ -1075,7 +1127,7 @@ void trace_transistor(void)
         if(Gyr_dir == 1 && left_edge_point.y >= Img_Gap_left)   //T字形左转
         {
             transistor_Judge_frames_t --;
-            if(transistor_Judge_frames_t == 0 && ban_transisitor == 0)
+            if(transistor_Judge_frames_t == 0 && ban_transisitor == 0 && Right_ban_flag != 1)
             {
                 transistor_Judge_frames_t = frame_judge;
                 transistor_Num++;
@@ -1089,7 +1141,7 @@ void trace_transistor(void)
         if(Gyr_dir == 2 && right_edge_point.y >= Img_Gap_right)   //T字形右转
         {
             transistor_Judge_frames_t --;
-            if(transistor_Judge_frames_t == 0 && ban_transisitor == 0)
+            if(transistor_Judge_frames_t == 0 && ban_transisitor == 0 && Right_ban_flag != 1)
             {
                 transistor_Judge_frames_t = frame_judge;
                 transistor_Num++;
@@ -1112,8 +1164,8 @@ void trace_transistor(void)
 uint8_t transistor_frames_judge;
 uint8_t Series_of_Curves_Sign = 0;
 uint8_t End_Judge_frames = 2;
-uint8_t Road_Planning[100] = {0,2,2,0,0,2,1,0,2,0,2,2,1,1,2,0,2,0,2,0,0,0,5,3,1,0,1,0,2,1,1,0,2,2,0,0,1,1,2,     2};   //0为直走,1为左转,2为右转，3为MOS管左转，4为MOS管右转,5为MOS管直走
-//uint8_t Road_Planning[50] = {0,0,0,2,5,4,2,0,0,0};
+ uint8_t Road_Planning[100] = {0,2,2,0,0,2,1,0,2,0,2,2,1,1,2,0,2,0,2,0,0,0,5,3,1,0,1,0,2,1,1,0,2,2,0,0,1,1,2,2,2,2,2,2};   //0为直走,1为左转,2为右转，3为MOS管左转，4为MOS管右转,5为MOS管直走
+
 /********************************/
 /******************************************************************************
 * 函数名称     : Final_Road
