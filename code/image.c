@@ -808,6 +808,7 @@ uint8_t Right_frames_judge_l = frame_judge;
 uint8_t Right_ban_flag = 0;
 uint8_t Right_flag1 = 0;
 uint8_t Right_flag2 = 0;
+uint8_t Right_flag3 = 0;
 /********************************/
 
 /******************************************************************************
@@ -818,25 +819,22 @@ uint8_t Right_flag2 = 0;
 ******************************************************************************/
 void trace_Right_angle(void)
 {
-       if(transistor_Num == 43 && Right_ban_flag == 1 && Right_flag2 == 1)
-       {
-            Right_ban_flag = 0;
-       }
+
       if((total_touch_flags.touch_top == 0 || (total_touch_flags.touch_top == 1 && up_edge_point.x >= 47 && transistor_Num == 41)) && total_touch_flags.touch_left == 0 && total_touch_flags.touch_right == 1 && total_touch_flags.touch_bottom == 1 && right_edge_point.y >= Img_Gap_right && state_flag == 1 && end_turning_state == 1 && boundary_gap < 12)
       {
         Right_frames_judge_r --;
-        if(Right_frames_judge_r == 0 && (ban_transisitor == 0 || (ban_transisitor == 1 && transistor_Num == 3)) && transistor_Num != 25)
+        if(Right_frames_judge_r == 0 && (ban_transisitor == 0 || (ban_transisitor == 1 && transistor_Num == 3)))
         {
           turning_state = 1; //标志着此时是需要直角右拐弯
           state_flag = 2;
           end_turning_state = 0;
           Right_frames_judge_r = frame_judge;
         }
-        if(transistor_Num == 28 && Right_ban_flag == 1 && Right_flag1 == 1)
+        if(transistor_Num == 32 && Right_ban_flag == 1 && Right_flag1 == 1)
         {
             Right_ban_flag = 0;
         }
-        if(transistor_Num == 28 && Right_ban_flag == 0 && Right_flag1 == 0)
+        if(transistor_Num == 32 && Right_ban_flag == 0 && Right_flag1 == 0)
         {
             Right_ban_flag = 1;
             Right_flag1 = 1;
@@ -849,12 +847,16 @@ void trace_Right_angle(void)
       if(total_touch_flags.touch_top == 0  && total_touch_flags.touch_left == 1 && total_touch_flags.touch_right == 0 && total_touch_flags.touch_bottom == 1 && left_edge_point.y >= Img_Gap_left && state_flag == 1 && end_turning_state == 1 && boundary_gap < 12)
       {
         Right_frames_judge_l --;
-        if(Right_frames_judge_l == 0 && ban_transisitor == 0 && Right_ban_flag != 1)
+        if(Right_frames_judge_l == 0 && ban_transisitor == 0)
         {
           turning_state = 1; //标志着此时是需要直角左拐弯
           state_flag = 3;
           end_turning_state = 0;
           Right_frames_judge_l = frame_judge;
+        }
+        if(transistor_Num == 43 && Right_ban_flag == 1 && Right_flag2 == 1)
+        {
+            Right_ban_flag = 0;
         }
         if(transistor_Num == 42 && Right_ban_flag == 0 && Right_flag2 == 0)
         {
@@ -1088,7 +1090,7 @@ void trace_transistor(void)
     if(total_touch_flags.touch_top == 1 && total_touch_flags.touch_right == 1 && total_touch_flags.touch_left == 0 && total_touch_flags.touch_bottom == 1 && right_edge_point.y >= Img_Gap_right && state_flag == 1 && end_turning_state == 1 && boundary_gap >= 12) //右转的T字口
     {
         transistor_Judge_frames_r --;
-        if(transistor_Judge_frames_r == 0 && ban_transisitor == 0 && transistor_Num != 23 && transistor_Num != 25 && Right_ban_flag != 1)
+        if(transistor_Judge_frames_r == 0 && ban_transisitor == 0 && Right_ban_flag != 1)
         {
             transistor_Judge_frames_r = frame_judge;
             transistor_Num ++;          // 经过的三极管数量
@@ -1106,7 +1108,7 @@ void trace_transistor(void)
     if(total_touch_flags.touch_top == 1 && total_touch_flags.touch_left == 1 && total_touch_flags.touch_right == 0 && total_touch_flags.touch_bottom == 1 && left_edge_point.y >= Img_Gap_left && state_flag == 1 && end_turning_state == 1 && boundary_gap >= 12) //左转的T字口
     {
         transistor_Judge_frames_l --;
-        if(transistor_Judge_frames_l == 0 && ban_transisitor == 0 && transistor_Num != 23 && transistor_Num != 42 && Right_ban_flag != 1)
+        if(transistor_Judge_frames_l == 0 && ban_transisitor == 0 && Right_ban_flag != 1)
         {
             transistor_Judge_frames_l = frame_judge;
             transistor_Num++;          // 经过的三极管数量
@@ -1164,7 +1166,7 @@ void trace_transistor(void)
 uint8_t transistor_frames_judge;
 uint8_t Series_of_Curves_Sign = 0;
 uint8_t End_Judge_frames = 2;
-uint8_t Road_Planning[100] = {0,2,2,0,0,2,1,0,2,0,2,2,1,1,2,0,2,0,2,0,0,0,5,3,1,0,1,0,2,1,1,0,2,2,0,0,1,1,0,2,2,0,1,2,0,2,1,1,1,0,0};   //0为直走,1为左转,2为右转，3为MOS管左转，4为MOS管右转,5为MOS管直走
+uint8_t Road_Planning[100] = {0,2,2,0,0,2,0,2,0,2,0,2,2,1,2,0,0,1,1,0,0,0,0,0,2,0,5,3,1,0,0,0,1,1,2,0,0,0,0};   //0为直走,1为左转,2为右转，3为MOS管左转，4为MOS管右转,5为MOS管直走
 
 /********************************/
 /******************************************************************************
@@ -1197,13 +1199,13 @@ void Final_Road(void)
 
     if(Road_Planning[transistor_Num] == 0 && MOS_Judge_Flag == 0)
     {
-        if((total_touch_flags.touch_right == 1 || total_touch_flags.touch_left == 1) && Series_of_Curves_Sign == 0 && (left_edge_point.y >= Img_Gap_left || right_edge_point.y >= Img_Gap_right) && state_flag == 1 && boundary_gap >= 12 && turn_count != 32)
+        if((total_touch_flags.touch_right == 1 || total_touch_flags.touch_left == 1) && Series_of_Curves_Sign == 0 && (left_edge_point.y >= Img_Gap_left || right_edge_point.y >= Img_Gap_right) && state_flag == 1 && boundary_gap >= 12)
         {
             ban_transisitor = 1;
             Series_of_Curves_Sign = 1;
         }
 
-        if(total_touch_flags.touch_bottom == 1 && total_touch_flags.touch_right == 0 && (total_touch_flags.touch_left == 0 || (total_touch_flags.touch_left == 1 && transistor_Num == 41))&& Series_of_Curves_Sign == 1)
+        if(total_touch_flags.touch_bottom == 1 && total_touch_flags.touch_right == 0 && total_touch_flags.touch_left == 0 && Series_of_Curves_Sign == 1)
         {
             End_Judge_frames --;
             if(End_Judge_frames == 0)
@@ -1285,15 +1287,15 @@ void Error_Gap(void)
            {
                Final_Sum = right_boundary_average_x - Middle_Line_x;
            }
-           if(transistor_Num == 25 || transistor_Num == 31 || transistor_Num == 35)
+           if(transistor_Num == 20 || transistor_Num == 23 || transistor_Num == 29 || transistor_Num == 35)
            {
-               if(Final_Sum < -5)
+               if(Final_Sum < -10)
                {
-                   Final_Sum = -5;
+                   Final_Sum = -10;
                }
-               if(Final_Sum > 5)
+               if(Final_Sum > 10)
                {
-                   Final_Sum = 5;
+                   Final_Sum = 10;
                }
            }
 

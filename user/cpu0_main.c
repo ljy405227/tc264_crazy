@@ -109,7 +109,7 @@ int core0_main(void)
 #endif
 #if !mode_fuya
     pwm_init(fuya_wushua_pwm, 50, 0);
-    pwm_ramp_up(fuya_wushua_pwm, 800);
+    pwm_ramp_up(fuya_wushua_pwm, 750);
 #endif
 #endif
 
@@ -150,7 +150,7 @@ int core0_main(void)
         if (pit_control_flag == 1)
         {
 //            printf_deal();
-//            printf_limit();
+           printf_limit();
             time_debug++;
 #if !run
              if (time_debug <= 70000)
