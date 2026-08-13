@@ -871,7 +871,7 @@ void trace_Right_angle(void)
       if((total_touch_flags.touch_top == 0 || (total_touch_flags.touch_top == 1 && up_edge_point.x >= 47 && transistor_Num == 40)) && total_touch_flags.touch_left == 0 && total_touch_flags.touch_right == 1 && total_touch_flags.touch_bottom == 1 && right_edge_point.y >= Img_Gap_right && state_flag == 1 && end_turning_state == 1 && boundary_gap < 12)
       {
         Right_frames_judge_r --;
-        if(Right_frames_judge_r == 0 && (ban_transisitor == 0 || (ban_transisitor == 1 && transistor_Num == 3)) && transistor_Num != 29)
+        if(Right_frames_judge_r == 0 && (ban_transisitor == 0 || (ban_transisitor == 1 && transistor_Num == 3)))
         {
           turning_state = 1; //标志着此时是需要直角右拐弯
           state_flag = 2;
@@ -1152,7 +1152,7 @@ void trace_transistor(void)
     if(total_touch_flags.touch_top == 1 && total_touch_flags.touch_left == 1 && total_touch_flags.touch_right == 0 && total_touch_flags.touch_bottom == 1 && left_edge_point.y >= Img_Gap_left && state_flag == 1 && end_turning_state == 1 && boundary_gap >= 12) //左转的T字口
     {
         transistor_Judge_frames_l --;
-        if(transistor_Judge_frames_l == 0 && ban_transisitor == 0 && Right_ban_flag != 1)
+        if(transistor_Judge_frames_l == 0 && ban_transisitor == 0 && transistor_Num != 41 && Right_ban_flag != 1)
         {
             transistor_Judge_frames_l = frame_judge;
             transistor_Num++;          // 经过的三极管数量
@@ -1173,7 +1173,7 @@ void trace_transistor(void)
         if(Gyr_dir == 1 && left_edge_point.y >= Img_Gap_left)   //T字形左转
         {
             transistor_Judge_frames_t --;
-            if(transistor_Judge_frames_t == 0 && ban_transisitor == 0 && Right_ban_flag != 1)
+            if(transistor_Judge_frames_t == 0 && ban_transisitor == 0 && transistor_Num != 41 && Right_ban_flag != 1)
             {
                 transistor_Judge_frames_t = frame_judge;
                 transistor_Num++;
@@ -1187,7 +1187,7 @@ void trace_transistor(void)
         if(Gyr_dir == 2 && right_edge_point.y >= Img_Gap_right)   //T字形右转
         {
             transistor_Judge_frames_t --;
-            if(transistor_Judge_frames_t == 0 && ban_transisitor == 0 && Right_ban_flag != 1)
+            if(transistor_Judge_frames_t == 0 && ban_transisitor == 0 && transistor_Num != 41 && Right_ban_flag != 1)
             {
                 transistor_Judge_frames_t = frame_judge;
                 transistor_Num++;

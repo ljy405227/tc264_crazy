@@ -254,7 +254,7 @@ void PID_Direction_Control(PID_DIR *pos_pid, PID_DIR *gyro_pid , float err_posit
         if (task_point == TASK_TURN_RIGHT) expect_gyro = 1180;
         else if (task_point == TASK_TURN_LEFT) expect_gyro = -1180;
      }
-     if (turn_count == 28 || turn_count == 29)
+     if (turn_count == 29)
      {
         if (task_point == TASK_TURN_RIGHT) expect_gyro = 1500;
         else if (task_point == TASK_TURN_LEFT) expect_gyro = -1500;
@@ -430,10 +430,15 @@ void ljy_isr_headle(void)
             Img_Gap_left = 20;
             Img_Gap_right = 20;
         }
-        else if (turn_count == 27)
+        // else if (turn_count == 27)
+        // {
+        //     Img_Gap_left = 17;
+        //     Img_Gap_right = 17;
+        // }
+        else if (turn_count == 18)
         {
-            Img_Gap_left = 15;
-            Img_Gap_right = 15;
+            Img_Gap_left = 30;
+            Img_Gap_right = 30;
         }
         else if (turn_count == 28)
         {
