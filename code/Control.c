@@ -249,12 +249,12 @@ void PID_Direction_Control(PID_DIR *pos_pid, PID_DIR *gyro_pid , float err_posit
     // 限幅
     if(expect_gyro > limit_gyro)  {expect_gyro = limit_gyro;limit_check.dir_expect_gyro += 1;}
     if(expect_gyro < -limit_gyro) {expect_gyro = -limit_gyro;limit_check.dir_expect_gyro += 1;}
-     if (turn_count == 33 )
+     if (turn_count == 27 )
      {
         if (task_point == TASK_TURN_RIGHT) expect_gyro = 1180;
         else if (task_point == TASK_TURN_LEFT) expect_gyro = -1180;
      }
-     if (turn_count == 34 || turn_count == 35)
+     if (turn_count == 28 || turn_count == 29)
      {
         if (task_point == TASK_TURN_RIGHT) expect_gyro = 1500;
         else if (task_point == TASK_TURN_LEFT) expect_gyro = -1500;
@@ -359,7 +359,7 @@ void ljy_isr_headle(void)
     if (zuo_ing == 1)
     {
         float diff = angle_diff(yaw, yaw_turn_first);
-        if (turn_count == 33)
+        if (turn_count == 27)
         {
             if (diff >= 77 || diff <= -77 )  // 左转达到 65 度
             {
@@ -425,27 +425,17 @@ void ljy_isr_headle(void)
     {
     case TASK_STRAIGHT:
     {
-        if (turn_count == 9 || turn_count == 17)
-        {
-            Img_Gap_left = 28;
-            Img_Gap_right = 28;
-        }
-        else if (turn_count == 18)
-        {
-            Img_Gap_left = 21;
-            Img_Gap_right = 21;
-        }
-        else if (turn_count == 32)
+        if (turn_count == 26)
         {
             Img_Gap_left = 20;
             Img_Gap_right = 20;
         }
-        else if (turn_count == 33)
+        else if (turn_count == 27)
         {
             Img_Gap_left = 15;
             Img_Gap_right = 15;
         }
-        else if (turn_count == 34)
+        else if (turn_count == 28)
         {
             Img_Gap_left = 19;
             Img_Gap_right = 19;
