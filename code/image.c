@@ -892,7 +892,7 @@ void trace_Right_angle(void)
       {
           Right_frames_judge_r = frame_judge;
       }
-      if((total_touch_flags.touch_top == 0 || (total_touch_flags.touch_top == 1 && up_edge_point.x <= 47 && turn_count == 27))  && total_touch_flags.touch_left == 1 && total_touch_flags.touch_right == 0 && total_touch_flags.touch_bottom == 1 && left_edge_point.y >= Img_Gap_left && state_flag == 1 && end_turning_state == 1 && boundary_gap < 12)
+      if((total_touch_flags.touch_top == 0 || (total_touch_flags.touch_top == 1 && up_edge_point.x <= 47 && turn_count == 27)) && total_touch_flags.touch_left == 1 && total_touch_flags.touch_right == 0 && total_touch_flags.touch_bottom == 1 && left_edge_point.y >= Img_Gap_left && state_flag == 1 && end_turning_state == 1 && boundary_gap < 12)
       {
         Right_frames_judge_l --;
         if(Right_frames_judge_l == 0 && ban_transisitor == 0 && Right_ban_flag != 1)
@@ -1152,7 +1152,7 @@ void trace_transistor(void)
     if(total_touch_flags.touch_top == 1 && total_touch_flags.touch_left == 1 && total_touch_flags.touch_right == 0 && total_touch_flags.touch_bottom == 1 && left_edge_point.y >= Img_Gap_left && state_flag == 1 && end_turning_state == 1 && boundary_gap >= 12) //左转的T字口
     {
         transistor_Judge_frames_l --;
-        if(transistor_Judge_frames_l == 0 && ban_transisitor == 0 && transistor_Num != 41 && Right_ban_flag != 1)
+        if(transistor_Judge_frames_l == 0 && ban_transisitor == 0 && transistor_Num != 31 && transistor_Num != 41 && Right_ban_flag != 1)
         {
             transistor_Judge_frames_l = frame_judge;
             transistor_Num++;          // 经过的三极管数量
@@ -1173,7 +1173,7 @@ void trace_transistor(void)
         if(Gyr_dir == 1 && left_edge_point.y >= Img_Gap_left)   //T字形左转
         {
             transistor_Judge_frames_t --;
-            if(transistor_Judge_frames_t == 0 && ban_transisitor == 0 && transistor_Num != 41 && Right_ban_flag != 1)
+            if(transistor_Judge_frames_t == 0 && ban_transisitor == 0)
             {
                 transistor_Judge_frames_t = frame_judge;
                 transistor_Num++;
@@ -1187,7 +1187,7 @@ void trace_transistor(void)
         if(Gyr_dir == 2 && right_edge_point.y >= Img_Gap_right)   //T字形右转
         {
             transistor_Judge_frames_t --;
-            if(transistor_Judge_frames_t == 0 && ban_transisitor == 0 && transistor_Num != 41 && Right_ban_flag != 1)
+            if(transistor_Judge_frames_t == 0 && ban_transisitor == 0)
             {
                 transistor_Judge_frames_t = frame_judge;
                 transistor_Num++;
@@ -1209,7 +1209,7 @@ void trace_transistor(void)
 //最终路径规划函数
 uint8_t transistor_frames_judge;
 uint8_t Series_of_Curves_Sign = 0;
-uint8_t End_Judge_frames = 2;
+uint8_t End_Judge_frames = 3;
 uint8_t Road_Planning[100] = {0,2,2,0,0,2,0,2,0,2,0,2,2,1,2,0,0,1,1,0,0,0,0,0,2,0,5,3,1,0,0,0,1,1,2,0,0,0,0,2,0,1,2,0,2,1,1,1,0,0};   //0为直走,1为左转,2为右转，3为MOS管左转，4为MOS管右转,5为MOS管直走
 
 /********************************/
@@ -1261,7 +1261,7 @@ void Final_Road(void)
         }
         else
         {
-            End_Judge_frames = 2;
+            End_Judge_frames = 3;
         }
 
     }
@@ -1331,7 +1331,7 @@ void Error_Gap(void)
            {
                Final_Sum = (right_boundary_average_x - Middle_Line_x) * 4;
            }
-           if(transistor_Num == 20 || transistor_Num == 23 || transistor_Num == 29 || transistor_Num == 31 || turn_count == 28)
+           if(transistor_Num == 20 || transistor_Num == 23 || transistor_Num == 31)
            {
                if(Final_Sum < -10)
                {

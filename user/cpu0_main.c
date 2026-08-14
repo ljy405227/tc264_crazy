@@ -170,22 +170,26 @@ int core0_main(void)
              }
 #endif
 #if run
-            //  if (time_debug <= 80)
-            //  {
-            //      if (first_flag == 1)
-            //      {
-            //          varyble_init();
-            //          first_flag = 0;
-            //      }
-            //  }
-            //  else if (time_debug > 80)
-            //  {
-            //      pit_control_flag = 0;
-            //      Ljy_set_motor_pwm(0,0);
-            //      pwm_set_duty(fuya_wushua_pwm, 0);
-
-            //  }
-            if (time_debug <= 3600 && protect_flag == 0 && turn_count < 39)
+            // if (time_debug <= 3600 && protect_flag == 0 && transistor_Num < 50)
+            // {
+            //     if (first_flag == 1)
+            //     {
+            //         varyble_init();
+            //         first_flag = 0;
+            //     }
+            // }
+            // else if (time_debug > 3600 || protect_flag == 1 || transistor_Num >= 50)
+            // {
+            //     pit_control_flag = 0;
+            //     Ljy_set_motor_pwm(0,0);
+            //     #if mode_fuya
+            //     pwm_set_duty(fuya_left_pwm, 0);
+            //     #endif
+            //     #if !mode_fuya
+            //     pwm_set_duty(fuya_wushua_pwm, 0);
+            //     #endif
+            // }
+            if (time_debug <= 3600 && protect_flag == 0 && turn_count < 33)
             {
                 if (first_flag == 1)
                 {
@@ -193,10 +197,10 @@ int core0_main(void)
                     first_flag = 0;
                 }
             }
-            else if (time_debug > 3600 || protect_flag == 1 || turn_count >= 39)
+            else if (time_debug > 3600 || protect_flag == 1 || turn_count <= 33)
             {
                 pit_control_flag = 0;
-                Ljy_set_motor_pwm(0,0);
+                Ljy_set_motor_pwm(0,0); 
                 #if mode_fuya
                 pwm_set_duty(fuya_left_pwm, 0);
                 #endif

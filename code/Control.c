@@ -251,8 +251,8 @@ void PID_Direction_Control(PID_DIR *pos_pid, PID_DIR *gyro_pid , float err_posit
     if(expect_gyro < -limit_gyro) {expect_gyro = -limit_gyro;limit_check.dir_expect_gyro += 1;}
      if (turn_count == 27 )
      {
-        if (task_point == TASK_TURN_RIGHT) expect_gyro = 1180;
-        else if (task_point == TASK_TURN_LEFT) expect_gyro = -1180;
+        if (task_point == TASK_TURN_RIGHT) expect_gyro = 1000;
+        else if (task_point == TASK_TURN_LEFT) expect_gyro = -1000;
      }
      if (turn_count == 29)
      {
@@ -359,37 +359,37 @@ void ljy_isr_headle(void)
     if (zuo_ing == 1)
     {
         float diff = angle_diff(yaw, yaw_turn_first);
-        if (turn_count == 27)
-        {
-            if (diff >= 77 || diff <= -77 )  // 左转达到 65 度
-            {
-                end_turning_state = 1;
-                zuo_ing = 0;
+        // if (turn_count == 27)
+        // {
+        //     if (diff >= 80 || diff <= -80 )  // 左转达到 65 度
+        //     {
+        //         end_turning_state = 1;
+        //         zuo_ing = 0;
 
-                pid_dir_gyro.err = 0;
-                pid_dir_gyro.err_last = 0;
-                pid_dir_gyro.out = 0;
-                pid_dir_pos.err = 0;
-                pid_dir_pos.err_last = 0;
-                pid_dir_pos.out = 0;
+        //         pid_dir_gyro.err = 0;
+        //         pid_dir_gyro.err_last = 0;
+        //         pid_dir_gyro.out = 0;
+        //         pid_dir_pos.err = 0;
+        //         pid_dir_pos.err_last = 0;
+        //         pid_dir_pos.out = 0;
 
-                pid_dir_gyro_left.err = 0;
-                pid_dir_gyro_left.err_last = 0;
-                pid_dir_gyro_left.out = 0;
-                pid_dir_pos_left.err = 0;
-                pid_dir_pos_left.err_last = 0;
-                pid_dir_pos_left.out = 0;
+        //         pid_dir_gyro_left.err = 0;
+        //         pid_dir_gyro_left.err_last = 0;
+        //         pid_dir_gyro_left.out = 0;
+        //         pid_dir_pos_left.err = 0;
+        //         pid_dir_pos_left.err_last = 0;
+        //         pid_dir_pos_left.out = 0;
 
-                pid_dir_gyro_right.err = 0;
-                pid_dir_gyro_right.err_last = 0;
-                pid_dir_gyro_right.out = 0;
-                pid_dir_pos_right.err = 0;
-                pid_dir_pos_right.err_last = 0;
-                pid_dir_pos_right.out = 0;
-            }
-        }
-        else
-        {
+        //         pid_dir_gyro_right.err = 0;
+        //         pid_dir_gyro_right.err_last = 0;
+        //         pid_dir_gyro_right.out = 0;
+        //         pid_dir_pos_right.err = 0;
+        //         pid_dir_pos_right.err_last = 0;
+        //         pid_dir_pos_right.out = 0;
+        //     }
+        // }
+        // else
+        // {
             if (diff >= 62 || diff <= -62 )  // 左转达到 65 度
             {
                 end_turning_state = 1;
@@ -416,7 +416,7 @@ void ljy_isr_headle(void)
                 pid_dir_pos_right.err_last = 0;
                 pid_dir_pos_right.out = 0;
             }
-        }
+        // }
 
     }
 #endif
@@ -427,18 +427,23 @@ void ljy_isr_headle(void)
     {
         if (turn_count == 26)
         {
-            Img_Gap_left = 20;
-            Img_Gap_right = 20;
+            Img_Gap_left = 28;
+            Img_Gap_right = 28;
         }
-        // else if (turn_count == 27)
-        // {
-        //     Img_Gap_left = 17;
-        //     Img_Gap_right = 17;
-        // }
+        else if (turn_count == 27)
+        {
+            Img_Gap_left = 19;
+            Img_Gap_right = 19;
+        }
         else if (turn_count == 18)
         {
-            Img_Gap_left = 30;
-            Img_Gap_right = 30;
+            Img_Gap_left = 28;
+            Img_Gap_right = 28;
+        }
+        else if (turn_count == 19)
+        {
+            Img_Gap_left = 21;
+            Img_Gap_right = 21;
         }
         else if (turn_count == 28)
         {
