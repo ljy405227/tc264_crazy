@@ -30,44 +30,30 @@ struct FlashInformation
     float other_ramp_time;
     float other_turn_speed;
 
-
     // float speed_row;
-
-
-
-
-    // float tar_speed;
     // float speed_kf;
     // float speed_kp;
     // float speed_ki;
     // float speed_kd;
-
     // float direction_kp1;
     // float direction_kp2;
     // float direction_kd;
     // float direction_max_out;
-
     // float speed_max_intel;
-
     // float speedl_kp;
     // float speedl_ki;
-
     // float speedr_kp;
     // float speedr_ki;
-
     // float speed_max_out;
-
     // float dis_kf;
     // float dis_kp;
     // float dis_ki;
     // float dis_kd;
     // float dis_max_intel;
     // float dis_max_out;
-
     // float img_kp;
     // float img_kp2;
     // float img_max_out;
-
     // float Brushless_duty;
     // float Sped_dec;
 };

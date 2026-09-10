@@ -1,28 +1,27 @@
 #ifndef _zf_common_headfile_h_
 #define _zf_common_headfile_h_
 
-// 0为无刷 --- IGNORE ---
-// 1为有刷 --- IGNORE ---
+// 0 = Brushless motor (无刷), 1 = Brushed motor (有刷)
 #define mode_fuya 0
 #define Battery_Valtage_mode 0
-#define run 1//1为跑 0为不跑
+#define run 1   // 1 = Run, 0 = Stop (motors disabled)
 
-//===================================================C锟斤拷锟斤拷 锟斤拷锟斤拷锟斤拷===================================================
+//============================================ C Standard Library ============================================
 #include "math.h"
 #include "stdio.h"
 #include "stdint.h"
 #include "stdbool.h"
 #include "string.h"
-//===================================================C锟斤拷锟斤拷 锟斤拷锟斤拷锟斤拷===================================================
+//============================================ C Standard Library ============================================
 
-//===================================================芯片 SDK 锟阶诧拷===================================================
+//============================================ Chip SDK ============================================
 #include "ifxAsclin_reg.h"
 #include "SysSe/Bsp/Bsp.h"
 #include "IfxCcu6_Timer.h"
 #include "IfxScuEru.h"
-//===================================================芯片 SDK 锟阶诧拷===================================================
+//============================================ Chip SDK ============================================
 
-//====================================================锟斤拷源锟解公锟斤拷锟斤拷====================================================
+//============================================ Seekfree Common Library ============================================
 #include "zf_common_typedef.h"
 #include "zf_common_clock.h"
 #include "zf_common_debug.h"
@@ -31,9 +30,9 @@
 #include "zf_common_function.h"
 #include "zf_common_interrupt.h"
 #include "isr_config.h"
-//====================================================锟斤拷源锟解公锟斤拷锟斤拷====================================================
+//============================================ Seekfree Common Library ============================================
 
-//===================================================芯片锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷===================================================
+//============================================ Driver Layer ============================================
 #include "zf_driver_adc.h"
 #include "zf_driver_delay.h"
 #include "zf_driver_dma.h"
@@ -49,9 +48,9 @@
 #include "zf_driver_uart.h"
 #include "zf_driver_timer.h"
 #include "zf_eeprom.h"
-//===================================================芯片锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷===================================================
+//============================================ Driver Layer ============================================
 
-//===================================================锟斤拷锟斤拷璞革拷锟斤拷锟斤拷锟�===================================================
+//============================================ Device Drivers ============================================
 #include "zf_device_absolute_encoder.h"
 #include "zf_device_ble6a20.h"
 #include "zf_device_bluetooth_ch9141.h"
@@ -81,17 +80,16 @@
 #include "zf_device_wifi_uart.h"
 #include "zf_device_wifi_spi.h"
 #include "zf_device_wireless_uart.h"
-//===================================================锟斤拷锟斤拷璞革拷锟斤拷锟斤拷锟�===================================================
+//============================================ Device Drivers ============================================
 
-//====================================================应锟斤拷锟斤拷锟斤拷锟�====================================================
+//============================================ Application ============================================
 #include "seekfree_assistant.h"
 #include "seekfree_assistant_interface.h"
-//====================================================应锟斤拷锟斤拷锟斤拷锟�====================================================
+//============================================ Application ============================================
 
 
 
-
-//=====================================================锟矫伙拷锟斤拷======================================================
+//============================================ User Code Headers ============================================
 #include "Init.h"
 #include "image.h"
 #include "Control.h"
@@ -110,14 +108,13 @@
 #include "ljy_menu.h"
 
 
-/******************锟斤拷锟斤拷模锟介开锟斤拷 */
+/****************** WiFi Module ******************/
 
 #define Wifi_mode 0
-/******************锟斤拷锟斤拷模锟介开锟斤拷 */
-#define VOLTAGE_PORT    ADC0_CH11_A11 // 锟斤拷锟斤拷锟斤拷丝锟
+/****************** WiFi Module ******************/
 #define WIFI_SSID_TEST          "YiMeng"
 #define WIFI_PASSWORD_TEST      "123456789"
-#define VOLTAGE_PORT    ADC0_CH11_A11 // 锟斤拷锟斤拷锟斤拷丝锟
+#define VOLTAGE_PORT    ADC0_CH11_A11 // Battery voltage detection pin
 
 #define my_camera_h    60
 #define my_camera_w    94
@@ -126,7 +123,7 @@
 #define Camera_W MT9V03X_W
 #define Camera_H_YM  MT9V03X_H
 #define Camera_W_XM  MT9V03X_W
-#define BOUNDARY_NUM            (MT9V03X_H * 5)   //确保存储的点够用
+#define BOUNDARY_NUM            (MT9V03X_H * 5)   // Ensure enough storage for boundary points
 
 #define Control_line  1
 
@@ -139,28 +136,29 @@ extern uint8 img_SPI[my_camera_h][my_camera_w];
 
 extern uint8 xy_x1_boundary[BOUNDARY_NUM], xy_x2_boundary[BOUNDARY_NUM], xy_x3_boundary[BOUNDARY_NUM];
 extern uint8 xy_y1_boundary[BOUNDARY_NUM], xy_y2_boundary[BOUNDARY_NUM], xy_y3_boundary[BOUNDARY_NUM];
-extern uint8_t data_ready_flag_for_core0 ;
+extern uint8_t data_ready_flag_for_core0;
 extern uint32_t tim;
-extern uint16_t l_point_x ;
-extern uint16_t r_point_x ;
+extern uint16_t l_point_x;
+extern uint16_t r_point_x;
 extern uint16_t bottom_center_x;
 extern uint16_t start_point_l_x;
 extern uint16_t start_point_r_x;
 extern uint8_t state_flag;
 extern uint8_t turning_state;
 extern uint8_t end_turning_state;
-// 锟竭斤拷锟结构锟斤拷
+
+// Boundary point structure
 typedef struct {
     int16_t x;
     int16_t y;
-    uint8_t direction;  // 锟斤拷锟斤拷锟斤拷锟斤拷 (0-7锟斤拷锟斤拷应8锟斤拷锟斤拷)
+    uint8_t direction;  // Direction (0-7 corresponding to 8 directions)
 } BoundaryPoint;
 
 typedef struct {
-    uint8_t touch_top : 1;     // 锟斤拷锟斤拷锟斤拷锟较边斤拷
-    uint8_t touch_bottom : 1;  // 锟斤拷锟斤拷锟斤拷锟铰边斤拷
-    uint8_t touch_left : 1;    // 锟斤拷锟斤拷锟斤拷锟斤拷呓锟
-    uint8_t touch_right : 1;   // 锟斤拷锟斤拷锟斤拷锟揭边斤拷
+    uint8_t touch_top : 1;     // Whether top edge is touched
+    uint8_t touch_bottom : 1;  // Whether bottom edge is touched
+    uint8_t touch_left : 1;    // Whether left edge is touched
+    uint8_t touch_right : 1;   // Whether right edge is touched
 } BoundaryTouchFlags;
 
 typedef struct {
@@ -169,12 +167,12 @@ typedef struct {
 } Four_Edge_Point;
 
 typedef struct {
-    uint16_t x;            // 锟斤拷锟斤拷锟斤拷锟絰锟斤拷锟斤拷
-    uint16_t y;            // 锟斤拷锟斤拷锟斤拷锟統锟斤拷锟斤拷
-    uint8_t boundary_side; // 锟斤拷锟斤拷锟侥边界：0-锟斤拷, 1-锟斤拷, 2-锟斤拷, 3-锟斤拷
+    uint16_t x;            // X coordinate of touch point
+    uint16_t y;            // Y coordinate of touch point
+    uint8_t boundary_side; // Boundary side: 0-top, 1-bottom, 2-left, 3-right
 } TouchPoint;
 
-// 锟斤拷锟侥碉拷峁癸拷锟
+// Center point structure
 typedef struct {
     int16_t x;
     int16_t y;
@@ -185,18 +183,18 @@ typedef struct {
     int16_t y;
 } Corner_Point;
 
-//爬线数组
+// Boundary trace arrays
 extern BoundaryPoint Total_boundary[];
 extern BoundaryPoint left_boundary[];
 extern BoundaryPoint right_boundary[];
 
-//四方位点
+// Four edge points
 extern Four_Edge_Point left_edge_point;
 extern Four_Edge_Point right_edge_point;
 extern Four_Edge_Point up_edge_point;
 extern Four_Edge_Point down_edge_point;
 
-//拐点
+// Corner points
 extern uint16_t tmp_right_corner_point_x;
 extern uint16_t tmp_left_corner_point_x;
 extern uint16_t tmp_right_corner_point_y;
@@ -206,7 +204,7 @@ extern uint16_t left_corner_point_x;
 extern uint16_t right_corner_point_y;
 extern uint16_t left_corner_point_y;
 
-extern Center_Point center_points_new[150];;
+extern Center_Point center_points_new[150];
 extern uint16_t center_point_num;
 extern uint16_t center_point_x_sum;
 extern int16_t center_point_x_average;
@@ -226,7 +224,7 @@ extern uint16_t right_boundary_x_sum;
 extern int16_t right_boundary_average_x;
 extern int16_t boundary_gap;
 
-extern BoundaryTouchFlags total_touch_flags; // 鎬昏竟鐣岃Е纰版爣蹇
+extern BoundaryTouchFlags total_touch_flags; // Total boundary touch flags
 
 extern uint16_t current_white_num_col;
 extern uint16_t top_point_x;
@@ -242,7 +240,7 @@ extern uint8_t protect_flag;
 extern uint16_t white_num_sum;
 extern int8_t top_center_x_gap;
 extern uint8_t Right_ban_flag;
-//=====================================================锟矫伙拷锟斤拷======================================================
+//============================================ User Code Headers ==============================================
 
 void printf_deal(void);
 extern Pos_PID speed_left_pid;
@@ -283,8 +281,8 @@ extern SpeedRamp_t ramp;
 
 
 // IMU.c
-extern IMU gyro[3],accel[3];
-extern float pitch,roll,yaw;
+extern IMU gyro[3], accel[3];
+extern float pitch, roll, yaw;
 extern float avl_gyro_z;
 extern uint16 gyro_amend;
 
@@ -315,4 +313,3 @@ extern uint8_t Img_Gap_right;
 
 
 #endif
-

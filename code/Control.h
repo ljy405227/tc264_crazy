@@ -24,7 +24,7 @@ typedef struct
 {
     int16 encoder_count_original;
     int16 encoder_count;
-} Encoder_Data; // 缂栫爜鍣ㄦ暟鎹粨鏋勪綋
+} Encoder_Data;         // Encoder data structure
 
 typedef struct
 {
@@ -40,8 +40,7 @@ typedef struct
 
     float dec_limit;
     float out_limit;
-
-}PID_SPEED; // 渚涢�熷害鐜娇鐢�
+} PID_SPEED;            // Speed PID structure
 
 typedef struct
 {
@@ -54,8 +53,7 @@ typedef struct
 
     float out;
     float out_limit;
-
-} PID_DIR;
+} PID_DIR;              // Direction PID structure
 
 typedef struct
 {
@@ -66,10 +64,10 @@ typedef struct
 
 typedef struct
 {
-    float speed_target;       // 当前输出
-    float speed_target_max;   // 目标值
-    float ramp_time;          // 上升时间（秒）
-    float elapsed_time;       // 已运行时间
+    float speed_target;       // Current target
+    float speed_target_max;   // Maximum target
+    float ramp_time;          // Ramp-up time (seconds)
+    float elapsed_time;       // Elapsed time
 } SpeedRamp_t;
 
 

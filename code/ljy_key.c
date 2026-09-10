@@ -106,15 +106,19 @@ uint8_t key_read(int key_index)
     return 1; 
 }
 
-bool is_key_dowm(uint8_t key_index) {
-    if (key_flag[key_index] == key_short_down) {
+bool is_key_dowm(uint8_t key_index)
+{
+    if (key_flag[key_index] == key_short_down)
+    {
         return true;
     }
     return false;
 }
 
-void key_res(){
-    for (uint8_t i = 0; i < KEY_COUNT; i++) {
+void key_res(void)
+{
+    for (uint8_t i = 0; i < KEY_COUNT; i++)
+    {
         key_flag[i] = 0;
     }
 }

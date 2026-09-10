@@ -1,64 +1,57 @@
 #ifndef CODE_PID_H_
 #define CODE_PID_H_
 
-
 typedef struct
 {
-    float Kf;               // ǰ��ϵ����ѡ�ã�
-    float Kp;               // ����ϵ��
-    float Ki;               // ����ϵ��
-    float Kd;               // ΢��ϵ��
+    float Kf;               // Feed-forward coefficient (optional)
+    float Kp;               // Proportional coefficient
+    float Ki;               // Integral coefficient
+    float Kd;               // Derivative coefficient
 
-    float Error;            // ��ǰ��Ŀ��ֵ - ����ֵ��
-    float Last_Error;       // ��һ�����
-    float Last_Feedback;    // ��һ�η���ֵ�����ڼ���΢�֣�
-    float Integral;         // �������ۼ�ֵ
-    float Differential;     // ΢�������ֵ
+    float Error;            // Current error (target - feedback)
+    float Last_Error;       // Previous error
+    float Last_Feedback;    // Previous feedback value (for derivative)
+    float Integral;         // Accumulated integral value
+    float Differential;     // Derivative value (filtered)
 
-    float OutPut;           // PID���ֵ
-    float MAX_Error;        // ���������ƣ���ѡ����ֹ������
-    float MAX_Integral;     // �����޷�����ֹ���ֱ��ͣ�
-    float MAX_OutPut;       // ����޷�������ִ���������Χ��
-}Pos_PID;       // �ṹ������
+    float OutPut;           // PID output
+    float MAX_Error;        // Error limit (optional, anti-windup)
+    float MAX_Integral;     // Integral limit (anti-windup)
+    float MAX_OutPut;       // Output limit (actuator protection)
+} Pos_PID;                  // Position PID structure
 
+typedef struct {
+    float Kp;
+    float Ki;
+    float Kd;
 
+    float Error;            // Current error
+    float Last_Error;       // Previous error
+    float Prev_Error;       // Error before last
 
-typedef struct{
-        float Kp;
-        float Ki;
-        float Kd;
+    float Pout;
+    float Iout;
+    float Dout;
+    float OutPut;
 
-        float Error;            //���
-        float Last_Error;       //�ϴ����
-        float Prev_Error;
+    float MAX_OutPut;
+} Increment_PID;            // Incremental PID structure
 
-        float Pout;
-        float Iout;
-        float Dout;
-        float OutPut;
+typedef struct {
+    float Kp1;
+    float Kp2;
+    float Kd;
 
-        float MAX_OutPut;
+    float Error;            // Current error
+    float Last_Error;       // Previous error
 
-}Increment_PID;
+    float P1out;
+    float P2out;
+    float Dout;
+    float OutPut;
 
-typedef struct{
-        float Kp1;
-        float Kp2;
-        float Kd;
-
-        float Error;            //���
-        float Last_Error;       //�ϴ����
-
-        float P1out;
-        float P2out;
-        float Dout;
-        float OutPut;
-
-        float MAX_OutPut;
-
-}DIR_PID;
-
-//extern PID Speed;
+    float MAX_OutPut;
+} DIR_PID;                  // Direction PID structure
 
 void PID_Init(void);
 
